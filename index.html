@@ -302,7 +302,9 @@
       
         
           
-            
+            <h2 id="10-22-求众数"><a href="#10-22-求众数" class="headerlink" title="10.22 求众数"></a>10.22 求众数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        vector&lt;int&gt; res;</span><br><span class="line">        unordered_map&lt;int, int&gt; cnt;</span><br><span class="line"></span><br><span class="line">        for (auto&amp; num : nums) &#123;</span><br><span class="line">            cnt[num]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for (auto&amp; it : cnt) &#123;</span><br><span class="line">            if (it.second &gt; n / 3) &#123;</span><br><span class="line">                res.push_back(it.first);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
           
         
       
