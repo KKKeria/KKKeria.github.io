@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="17电话号码的字母组合给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。(九键输入法)
+思路：九宫格每个数字（2-9）分别对应相应的字母 很显然要用哈希表将他们联系起来">
+  <meta name="author" content="KKKeria">
+  <meta name="keywords" content="">
+  <meta name="description" content="17电话号码的字母组合给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。(九键输入法) 思路：九宫格每个数字（2-9）分别对应相应的字母 很显然要用哈希表将他们联系起来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回溯">
+<meta property="og:url" content="http://yoursite.com/2021/10/26/%E5%9B%9E%E6%BA%AF/index.html">
+<meta property="og:site_name" content="KKKeria">
+<meta property="og:description" content="17电话号码的字母组合给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。(九键输入法) 思路：九宫格每个数字（2-9）分别对应相应的字母 很显然要用哈希表将他们联系起来">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-26T04:57:57.000Z">
+<meta property="article:modified_time" content="2021-10-26T08:06:12.144Z">
+<meta property="article:author" content="KKKeria">
+<meta property="article:tag" content="dfs回溯">
+<meta property="article:tag" content="Leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>回溯 - KKKeria</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>KKKeria</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="回溯">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-26 12:57" pubdate>
+        2021年10月26日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">回溯</h1>
+            
+            <div class="markdown-body">
+              <h2 id="17电话号码的字母组合"><a href="#17电话号码的字母组合" class="headerlink" title="17电话号码的字母组合"></a>17电话号码的字母组合</h2><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。(九键输入法)</p>
+<p>思路：九宫格每个数字（2-9）分别对应相应的字母 很显然要用哈希表将他们联系起来</p>
+<span id="more"></span>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp">unordered_map&lt;<span class="hljs-keyword">char</span>,string&gt; pair &#123;<br>          &#123;<span class="hljs-string">&#x27;2&#x27;</span>,<span class="hljs-string">&quot;abc&quot;</span>&#125;,<br>          &#123;<span class="hljs-string">&#x27;3&#x27;</span>,<span class="hljs-string">&quot;def&quot;</span>&#125;,<br>          &#123;<span class="hljs-string">&#x27;4&#x27;</span>,<span class="hljs-string">&quot;ghi&quot;</span>&#125;,<br>          &#123;<span class="hljs-string">&#x27;5&#x27;</span>,<span class="hljs-string">&quot;jkl&quot;</span>&#125;,<br>          &#123;<span class="hljs-string">&#x27;6&#x27;</span>,<span class="hljs-string">&quot;mno&quot;</span>&#125;,<br>          &#123;<span class="hljs-string">&#x27;7&#x27;</span>,<span class="hljs-string">&quot;pqrs&quot;</span>&#125;,<br>          &#123;<span class="hljs-string">&#x27;8&#x27;</span>,<span class="hljs-string">&quot;tuv&quot;</span>&#125;,<br>          &#123;<span class="hljs-string">&#x27;9&#x27;</span>,<span class="hljs-string">&quot;wxyz&quot;</span>&#125;<br>      &#125;;<br></code></pre></td></tr></table></figure>
+<p>因为是要求出所有的可能，首先想到的就是递归,回溯,dfs.代码分为两块</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs fortran"><span class="hljs-keyword">if</span>(<span class="hljs-built_in">index</span> == <span class="hljs-built_in">digits</span>.<span class="hljs-built_in">size</span>()) &#123;<br>          res.push_back(tmp);<br>      &#125; //长度够了后返回结果<br></code></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk">char digit = digits[index]; <span class="hljs-regexp">//</span>输入数字的索引<br>string letters = pair[digit];<span class="hljs-regexp">//</span>输入数字对应的字母的字符串<br><span class="hljs-keyword">for</span>(auto l : letters) &#123; <span class="hljs-regexp">//</span>对每一个遍历<br>    tmp.push_back(l);<span class="hljs-regexp">//</span>tmp数组push <span class="hljs-string">&#x27;l&#x27;</span><br>    dfs(pair,index + <span class="hljs-number">1</span>,digits); <span class="hljs-regexp">//</span>递归 index++表示着要和下一个数字匹配<br>    tmp.pop_back();<span class="hljs-regexp">//</span>回溯（关键） 有点类似于树<br>&#125; <span class="hljs-regexp">//</span>处理过程<br></code></pre></td></tr></table></figure>
+<h2 id="完整代码："><a href="#完整代码：" class="headerlink" title="完整代码："></a>完整代码：</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">letterCombinations</span><span class="hljs-params">(string digits)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(digits.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> res;<br>        unordered_map&lt;<span class="hljs-keyword">char</span>,string&gt; pair &#123;<br>            &#123;<span class="hljs-string">&#x27;2&#x27;</span>,<span class="hljs-string">&quot;abc&quot;</span>&#125;,<br>            &#123;<span class="hljs-string">&#x27;3&#x27;</span>,<span class="hljs-string">&quot;def&quot;</span>&#125;,<br>            &#123;<span class="hljs-string">&#x27;4&#x27;</span>,<span class="hljs-string">&quot;ghi&quot;</span>&#125;,<br>            &#123;<span class="hljs-string">&#x27;5&#x27;</span>,<span class="hljs-string">&quot;jkl&quot;</span>&#125;,<br>            &#123;<span class="hljs-string">&#x27;6&#x27;</span>,<span class="hljs-string">&quot;mno&quot;</span>&#125;,<br>            &#123;<span class="hljs-string">&#x27;7&#x27;</span>,<span class="hljs-string">&quot;pqrs&quot;</span>&#125;,<br>            &#123;<span class="hljs-string">&#x27;8&#x27;</span>,<span class="hljs-string">&quot;tuv&quot;</span>&#125;,<br>            &#123;<span class="hljs-string">&#x27;9&#x27;</span>,<span class="hljs-string">&quot;wxyz&quot;</span>&#125;<br>        &#125;;<br>        <span class="hljs-built_in">dfs</span>(pair,<span class="hljs-number">0</span>,digits);<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(unordered_map&lt;<span class="hljs-keyword">char</span>,string&gt; pair,<span class="hljs-keyword">int</span> index,string digits)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(index == digits.<span class="hljs-built_in">size</span>()) &#123;<br>            res.<span class="hljs-built_in">push_back</span>(tmp);<br>        &#125;<br>        <span class="hljs-keyword">char</span> digit = digits[index];<br>        string letters = pair[digit];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> l : letters) &#123;<br>            tmp.<span class="hljs-built_in">push_back</span>(l);<br>            <span class="hljs-built_in">dfs</span>(pair,index + <span class="hljs-number">1</span>,digits);<br>            tmp.<span class="hljs-built_in">pop_back</span>();<br>        &#125;<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    vector&lt;string&gt; res;<br>    string tmp;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="22括号生成"><a href="#22括号生成" class="headerlink" title="22括号生成"></a>22括号生成</h2><p>数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。<br>有效括号组合需满足：左括号必须以正确的顺序闭合。</p>
+<p>思路:有了上一个题的经验,但是这个没有什么需要处理的，直接进入dfs环节（因为只有左右括号一说）<br>还是分为两块</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">if</span>(tmp.size() == n * <span class="hljs-number">2</span>) &#123;<br>          <span class="hljs-selector-tag">res</span><span class="hljs-selector-class">.push_back</span>(tmp);<br>      &#125;<span class="hljs-comment">//因为是左右括号，每添加一次就会++ 而给的n代表的是括号对数</span><br></code></pre></td></tr></table></figure>
+<p>然后又到了如何处理和回溯阶段</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs less">		<span class="hljs-selector-tag">if</span>(left &lt; n) &#123;<span class="hljs-comment">//首先只要左括号数小于n 一直加左括号 直到不能加了就开始加有括号</span><br>            <span class="hljs-selector-tag">tmp</span><span class="hljs-selector-class">.push_back</span>(<span class="hljs-string">&#x27;(&#x27;</span>);<br>            <span class="hljs-selector-tag">dfs</span>(n,left + <span class="hljs-number">1</span>, right);<br>            <span class="hljs-selector-tag">tmp</span><span class="hljs-selector-class">.pop_back</span>();<br>        &#125;<br>        <span class="hljs-selector-tag">if</span>(right &lt; left) &#123;<span class="hljs-comment">//直到不能加了就开始加有括号</span><br>            <span class="hljs-selector-tag">tmp</span><span class="hljs-selector-class">.push_back</span>(<span class="hljs-string">&#x27;)&#x27;</span>);<br>            <span class="hljs-selector-tag">dfs</span>(n, left, right + <span class="hljs-number">1</span>);<br>            <span class="hljs-selector-tag">tmp</span><span class="hljs-selector-class">.pop_back</span>();<br>        &#125; <span class="hljs-comment">//同样这两个都是用pop_back进行回溯</span><br><span class="hljs-comment">//过程大概就是 左括号三个 对应的右括号的情况 然后两个左括号在对应有括号（右括号必须小于左括号）</span><br></code></pre></td></tr></table></figure>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码:"></a>完整代码:</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">generateParenthesis</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-built_in">dfs</span>(n,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n,<span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(tmp.<span class="hljs-built_in">size</span>() == n * <span class="hljs-number">2</span>) &#123;<br>            res.<span class="hljs-built_in">push_back</span>(tmp);<br>        &#125;<br>        <span class="hljs-keyword">if</span>(left &lt; n) &#123;<br>            tmp.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;(&#x27;</span>);<br>            <span class="hljs-built_in">dfs</span>(n,left + <span class="hljs-number">1</span>, right);<br>            tmp.<span class="hljs-built_in">pop_back</span>();<br>        &#125;<br>        <span class="hljs-keyword">if</span>(right &lt; left) &#123;<br>            tmp.<span class="hljs-built_in">push_back</span>(<span class="hljs-string">&#x27;)&#x27;</span>);<br>            <span class="hljs-built_in">dfs</span>(n, left, right + <span class="hljs-number">1</span>);<br>            tmp.<span class="hljs-built_in">pop_back</span>();<br>        &#125;<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    vector&lt;string&gt; res;<br>    string tmp;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="37解数独"><a href="#37解数独" class="headerlink" title="37解数独"></a>37解数独</h2><p>编写一个程序，通过填充空格来解决数独问题。<br>数独的解法需 遵循如下规则：<br>数字 1-9 在每一行只能出现一次。<br>数字 1-9 在每一列只能出现一次。<br>数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。（请参考示例图）<br>数独部分空格内已填入了数字，空白格用 ‘.’ 表示。</p>
+<p>思路：乍一看这个题是困难题,而且貌似非常复杂,其实也要遵循“标准”步骤<br>同样的道理,没有需要处理的就直接进入dfs</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">//因为这个的停止条件就是遍历完全部，所以省去第一步 直接到如何处理和回溯</span><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;<br>       <span class="hljs-keyword">int</span> row = board.<span class="hljs-built_in">size</span>(), col = board[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();<br>       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; row; i++) &#123;<br>           <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; col; j++) &#123;<span class="hljs-comment">//双层for找到需要判断的&quot;格子&quot;</span><br>               <span class="hljs-keyword">if</span>(board[i][j] != <span class="hljs-string">&#x27;.&#x27;</span>) <span class="hljs-keyword">continue</span>; <span class="hljs-comment">//不是空格就继续</span><br>               <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> ch = <span class="hljs-string">&#x27;1&#x27;</span>; ch &lt;= <span class="hljs-string">&#x27;9&#x27;</span>; ch++) &#123; <span class="hljs-comment">//假如是空格，这里有点类似第一个的 &#x27;2&#x27;代表 &quot;abc&quot; 这里的空格代表 0 - 9</span><br>                   <span class="hljs-keyword">if</span>(<span class="hljs-built_in">isvalid</span>(i,j,ch,board)) &#123;<span class="hljs-comment">//这里是题目的条件，要求填入的数合法,在回溯问题中可视为已知，这就可以类比为普通的dfs问题</span><br>                       board[i][j] = ch;<span class="hljs-comment">//填上相应数字</span><br>                       <span class="hljs-keyword">if</span>(<span class="hljs-built_in">dfs</span>(board)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">//递归，如果最后返回true就说明有解</span><br>                       board[i][j] = <span class="hljs-string">&#x27;.&#x27;</span>;<span class="hljs-comment">//回溯 </span><br>                   &#125;<br>               &#125;<br>               <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>           &#125;<br>       &#125;<br>       <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>   &#125;<br></code></pre></td></tr></table></figure>
+<p>判断的函数也是非常简单</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isvalid</span><span class="hljs-params">(<span class="hljs-keyword">int</span> row, <span class="hljs-keyword">int</span> col,<span class="hljs-keyword">char</span> ch,vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;<br>       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; i++) &#123;<br>           <span class="hljs-keyword">if</span>(board[row][i] == ch) &#123;<br>               <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>           &#125;<br>       &#125;<br>       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; i++) &#123;<br>           <span class="hljs-keyword">if</span>(board[i][col] == ch) &#123;<br>               <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>           &#125;<br>       &#125;<br>       <span class="hljs-keyword">int</span> m = (row / <span class="hljs-number">3</span>) * <span class="hljs-number">3</span>;<br>       <span class="hljs-keyword">int</span> n = (col / <span class="hljs-number">3</span>) * <span class="hljs-number">3</span>;<br>       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = m; i &lt; m + <span class="hljs-number">3</span>; i++) &#123;<br>           <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = n; j &lt; n + <span class="hljs-number">3</span>; j++) &#123;<br>               <span class="hljs-keyword">if</span>(board[i][j] == ch) &#123;<br>                   <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>               &#125;<br>           &#125;<br>       &#125;<br>       <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>   &#125;<br></code></pre></td></tr></table></figure>
+<h2 id="完整代码-1"><a href="#完整代码-1" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">solveSudoku</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;<br>        <span class="hljs-built_in">dfs</span>(board);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> row = board.<span class="hljs-built_in">size</span>(), col = board[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; row; i++) &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; col; j++) &#123;<br>                <span class="hljs-keyword">if</span>(board[i][j] != <span class="hljs-string">&#x27;.&#x27;</span>) <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> ch = <span class="hljs-string">&#x27;1&#x27;</span>; ch &lt;= <span class="hljs-string">&#x27;9&#x27;</span>; ch++) &#123;<br>                    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">isvalid</span>(i,j,ch,board)) &#123;<br>                        board[i][j] = ch;<br>                        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">dfs</span>(board)) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>                        board[i][j] = <span class="hljs-string">&#x27;.&#x27;</span>;<br>                    &#125;<br>                &#125;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isvalid</span><span class="hljs-params">(<span class="hljs-keyword">int</span> row, <span class="hljs-keyword">int</span> col,<span class="hljs-keyword">char</span> ch,vector&lt;vector&lt;<span class="hljs-keyword">char</span>&gt;&gt;&amp; board)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span>(board[row][i] == ch) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span>(board[i][col] == ch) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">int</span> m = (row / <span class="hljs-number">3</span>) * <span class="hljs-number">3</span>;<br>        <span class="hljs-keyword">int</span> n = (col / <span class="hljs-number">3</span>) * <span class="hljs-number">3</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = m; i &lt; m + <span class="hljs-number">3</span>; i++) &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = n; j &lt; n + <span class="hljs-number">3</span>; j++) &#123;<br>                <span class="hljs-keyword">if</span>(board[i][j] == ch) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/LeetCode/">LeetCode</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/dfs%E5%9B%9E%E6%BA%AF/">dfs回溯</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Leetcode/">Leetcode</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/02/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lambda表达式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
