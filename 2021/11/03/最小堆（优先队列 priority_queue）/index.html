@@ -13,21 +13,21 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="11-03 407. 接雨水 II给你一个 m x n 的矩阵，其中的值均为非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。">
+  <meta name="description" content="学习使我快乐~！">
   <meta name="author" content="KKKeria">
   <meta name="keywords" content="">
-  <meta name="description" content="11-03 407. 接雨水 II给你一个 m x n 的矩阵，其中的值均为非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。">
+  <meta name="description" content="11-03 407. 接雨水 II给你一个 m x n 的矩阵，其中的值均为非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。 根据木桶原理，接到的雨水的高度由这个容器周围最短的木板来确定的。我们可以知道容器内水的高度取决于最外层高度最低的方块，如图所示：我们假设已经知道最外层的方块接水后的高度的最小值，则此时我们根据木桶原理，肯定可以确定最小高度方块的相邻方块的接水高">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最小堆（优先队列 priority_queue）">
 <meta property="og:url" content="http://yoursite.com/2021/11/03/%E6%9C%80%E5%B0%8F%E5%A0%86%EF%BC%88%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%20priority_queue%EF%BC%89/index.html">
 <meta property="og:site_name" content="KKKeria">
-<meta property="og:description" content="11-03 407. 接雨水 II给你一个 m x n 的矩阵，其中的值均为非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。">
+<meta property="og:description" content="11-03 407. 接雨水 II给你一个 m x n 的矩阵，其中的值均为非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。 根据木桶原理，接到的雨水的高度由这个容器周围最短的木板来确定的。我们可以知道容器内水的高度取决于最外层高度最低的方块，如图所示：我们假设已经知道最外层的方块接水后的高度的最小值，则此时我们根据木桶原理，肯定可以确定最小高度方块的相邻方块的接水高">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/img/P1.png">
 <meta property="og:image" content="http://yoursite.com/img/P2.png">
 <meta property="og:image" content="http://yoursite.com/img/P3.png">
 <meta property="article:published_time" content="2021-11-03T11:56:13.000Z">
-<meta property="article:modified_time" content="2021-11-03T13:51:13.005Z">
+<meta property="article:modified_time" content="2022-10-19T01:28:37.592Z">
 <meta property="article:author" content="KKKeria">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://yoursite.com/img/P1.png">
@@ -241,7 +241,6 @@
             
             <div class="markdown-body">
               <h2 id="11-03-407-接雨水-II"><a href="#11-03-407-接雨水-II" class="headerlink" title="11-03 407. 接雨水 II"></a>11-03 407. 接雨水 II</h2><p>给你一个 m x n 的矩阵，其中的值均为非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。</p>
-<span id="more"></span>
 <p>根据木桶原理，接到的雨水的高度由这个容器周围最短的木板来确定的。我们可以知道容器内水的高度取决于最外层高度最低的方块，如图所示：<br><img src="/img/P1.png" srcset="/img/loading.gif" lazyload alt="来自LeetCode"><br>我们假设已经知道最外层的方块接水后的高度的最小值，则此时我们根据木桶原理，肯定可以确定最小高度方块的相邻方块的接水高度。<br>我们同时更新外层的方块标记，我们在新的最外层的方块再次找到接水后的高度的最小值，同时确定与其相邻的方块的接水高度，如图所示:<br><img src="/img/P2.png" srcset="/img/loading.gif" lazyload alt="来自LeetCode"><br>然后再次更新最外层，依次迭代直到求出所有的方块的接水高度，即可知道矩阵中的接水容量。 这里使用到了一种数据结构—最小堆</p>
 <h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>堆也叫优先队列，堆是一种特殊的完全二叉树数据结<br>堆分为两种，最大堆，最小堆。<br>最大堆：根节点大于左右两个子节点的完全二叉树<br>最小堆：根节点小于左右两个子节点的完全二叉树<br>堆可以用数组来存储，<br>a[i]处存根节点，a[2 * i]存左子树的根节点 ; a[2 * i + 1]存右子树的根节点。i从1开始!!<br><img src="/img/P3.png" srcset="/img/loading.gif" lazyload alt="完全二叉树"></p>
 <h2 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h2><p>C++ STL实现的优先级队列是一种容器适配器，类似堆，可以随时插入元素，但只能检索到优先级队列中优先级最高的元素。<br>priority_queue&lt;int,vector,less&gt; q;最大堆（默认为最大堆）<br>priority_queue&lt;int,vector,greater&gt; q;最小堆</p>

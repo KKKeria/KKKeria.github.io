@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="学习使我快乐~！">
+  <meta name="author" content="KKKeria">
+  <meta name="keywords" content="">
+  <meta name="description" content="游戏简介《植物大战僵尸》是由美国宝开游戏公司(PopCap Games)开发的一款益智策略类塔防御战游戏，也是《植物大战僵尸》系列的第一部作品。于2009年5月5日发售。 开发软件Unity 2020.3.43f1c1 (64-bit) 开发语言C# 参考视频https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1FA411j7ug?p&#x3D;1&amp;vd_source&#x3D;0ac943c9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="植物大战僵尸开发日记（1）">
+<meta property="og:url" content="http://yoursite.com/2023/01/10/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8%E5%BC%80%E5%8F%91%E6%97%A5%E8%AE%B0%EF%BC%881%EF%BC%89/index.html">
+<meta property="og:site_name" content="KKKeria">
+<meta property="og:description" content="游戏简介《植物大战僵尸》是由美国宝开游戏公司(PopCap Games)开发的一款益智策略类塔防御战游戏，也是《植物大战僵尸》系列的第一部作品。于2009年5月5日发售。 开发软件Unity 2020.3.43f1c1 (64-bit) 开发语言C# 参考视频https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1FA411j7ug?p&#x3D;1&amp;vd_source&#x3D;0ac943c9">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/img/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8/1-1.png">
+<meta property="og:image" content="http://yoursite.com/img/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8/1-2.png">
+<meta property="og:image" content="http://yoursite.com/img/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8/2-1.png">
+<meta property="article:published_time" content="2023-01-10T09:54:07.000Z">
+<meta property="article:modified_time" content="2023-01-10T12:35:45.445Z">
+<meta property="article:author" content="KKKeria">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://yoursite.com/img/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8/1-1.png">
+  
+  <title>植物大战僵尸开发日记（1） - KKKeria</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>KKKeria</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/flower.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="植物大战僵尸开发日记（1）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2023-01-10 17:54" pubdate>
+        2023年1月10日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">植物大战僵尸开发日记（1）</h1>
+            
+            <div class="markdown-body">
+              <h2 id="游戏简介"><a href="#游戏简介" class="headerlink" title="游戏简介"></a>游戏简介</h2><p>《植物大战僵尸》是由美国宝开游戏公司(PopCap Games)开发的一款益智策略类塔防御战游戏，也是《植物大战僵尸》系列的第一部作品。于2009年5月5日发售。</p>
+<h2 id="开发软件"><a href="#开发软件" class="headerlink" title="开发软件"></a>开发软件</h2><p>Unity 2020.3.43f1c1 (64-bit)</p>
+<h2 id="开发语言"><a href="#开发语言" class="headerlink" title="开发语言"></a>开发语言</h2><p>C#</p>
+<h2 id="参考视频"><a href="#参考视频" class="headerlink" title="参考视频"></a>参考视频</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FA411j7ug?p=1&amp;vd_source=0ac943c9b293c8cf36d2dc3204b8d82d">https://www.bilibili.com/video/BV1FA411j7ug?p=1&amp;vd_source=0ac943c9b293c8cf36d2dc3204b8d82d</a></p>
+<h2 id="素材"><a href="#素材" class="headerlink" title="素材"></a>素材</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1RKTgqLtwanYQq7iLyXc5gg">https://pan.baidu.com/s/1RKTgqLtwanYQq7iLyXc5gg</a><br>提取码：l4po</p>
+<h2 id="1-游戏场景搭建"><a href="#1-游戏场景搭建" class="headerlink" title="1.游戏场景搭建"></a>1.游戏场景搭建</h2><p><img src="/img/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8/1-1.png" srcset="/img/loading.gif" lazyload alt="图1-1 植物卡槽"></p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">MainPanel:</span>植物卡槽<br><span class="hljs-symbol">Group:</span>植物卡片集合可自由拉伸<br>image：植物(如向日葵)<br><span class="hljs-symbol">Text:</span>植物价格文本<br><span class="hljs-symbol">SunNumText:</span>总阳光数文本<br></code></pre></td></tr></table></figure>
+<p><img src="/img/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8/1-2.png" srcset="/img/loading.gif" lazyload alt="图1-2 Group分组配置"></p>
+<h2 id="2-天空中阳光的生成和下落和点击"><a href="#2-天空中阳光的生成和下落和点击" class="headerlink" title="2.天空中阳光的生成和下落和点击"></a>2.天空中阳光的生成和下落和点击</h2><p><img src="/img/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8/2-1.png" srcset="/img/loading.gif" lazyload alt="图2-1 文件夹的创建"></p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">Animations:</span>动画<br>	Controll动画控制器<br><span class="hljs-symbol">Resources:</span><br><span class="hljs-symbol">Scripts:</span>C<span class="hljs-meta">#脚本</span><br></code></pre></td></tr></table></figure>
+<p>创建物体SkySunManager来管理天空中的阳光，并添加上C#脚本(同名)</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">using System.Collections;<br>using System.Collections.Generic;<br>using UnityEngine;<br><br>public <span class="hljs-keyword">class</span> SkySunManager : MonoBehaviour<br>&#123;<br>    <span class="hljs-comment">//阳光预制体(Unity 的 GameObject 类用于表示任何可以存在于场景中的事物。)</span><br>    <span class="hljs-keyword">private</span> GameObject Prefab_sun;<br>    <span class="hljs-comment">//固定生成时Y轴坐标在背景上方合适位置</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">float</span> createSunPosY = <span class="hljs-number">6</span>;<br>    <span class="hljs-comment">//生成阳光时的X轴范围</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">float</span> createSunMaxPosX = <span class="hljs-number">5.3</span>f;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">float</span> createSunMinPosX = -<span class="hljs-number">5.3</span>f;<br>    <span class="hljs-comment">//阳光下落位置的Y轴范围</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">float</span> sunDownMaxPosY = <span class="hljs-number">3</span>f;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">float</span> sunDownMinPosY = -<span class="hljs-number">4</span>f;<br>    void <span class="hljs-constructor">Start()</span><br>    &#123;<br>		<span class="hljs-comment">//让其等于Resources文件夹下的Sun物体</span><br>        Prefab_sun = Resources.Load&lt;GameObject&gt;(<span class="hljs-string">&quot;Sun&quot;</span>);<br>		<span class="hljs-comment">//void InvokeRepeating(string methodName,float time,float delayTime)：等待time之后，再调用方法methodName方法，并且每隔delayTime再去调用methodName方法。</span><br>        <span class="hljs-constructor">InvokeRepeating(<span class="hljs-string">&quot;createSun&quot;</span>, 3, 3)</span>;<br>    &#125;<br><br>    <br>    void <span class="hljs-constructor">Update()</span><br>    &#123;<br>        <br>    &#125;<br>    <span class="hljs-comment">//生成阳光</span><br>    void create<span class="hljs-constructor">Sun()</span> &#123;<br>		<span class="hljs-comment">//阳光实例化 ！！！</span><br>        Sun sun = GameObject.Instantiate&lt;GameObject&gt;(Prefab_sun, <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Vector3</span>.</span></span>zero, <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Quaternion</span>.</span></span>identity,transform).GetComponent&lt;Sun&gt;<span class="hljs-literal">()</span>;<br>		<span class="hljs-comment">//随机生成X,Y坐标</span><br>        <span class="hljs-built_in">float</span> createX = Random.<span class="hljs-constructor">Range(<span class="hljs-params">createSunMinPosX</span>, <span class="hljs-params">createSunMaxPosX</span>)</span>;<br>        <span class="hljs-built_in">float</span> DownY = Random.<span class="hljs-constructor">Range(<span class="hljs-params">sunDownMinPosY</span>, <span class="hljs-params">sunDownMaxPosY</span>)</span>;<br>		<span class="hljs-comment">//下落最终位置  生成时X坐标  生成时的Y坐标(固定)</span><br>        sun.<span class="hljs-constructor">InitForSky(DownY, <span class="hljs-params">createX</span>, <span class="hljs-params">createSunPosY</span>)</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>为Sun物体创建脚本</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">using</span> System.Collections;<br><span class="hljs-keyword">using</span> System.Collections.Generic;<br><span class="hljs-keyword">using</span> UnityEngine;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sun</span> :</span> MonoBehaviour<br>&#123;<br>    <span class="hljs-comment">//下落的目标点Y</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> DownTargetPosY;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span><span class="hljs-params">()</span></span><br><span class="hljs-function">    </span>&#123;<br>        <br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span><span class="hljs-params">()</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">if</span> (transform.position.y &lt;= DownTargetPosY) &#123;<br>            <span class="hljs-built_in">Invoke</span>(<span class="hljs-string">&quot;DestorySun&quot;</span>, <span class="hljs-number">5</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        transform.<span class="hljs-built_in">Translate</span>(Vector3.down * Time.deltaTime);<br>    &#125;<br>    <span class="hljs-comment">//鼠标点击阳光时增加阳光数量</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnMouseDown</span><span class="hljs-params">()</span></span><br><span class="hljs-function">    </span>&#123;<br>        GameManager.Instance.SunNum += <span class="hljs-number">50</span>;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DestorySun</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-built_in">Destroy</span>(gameObject);<br>    &#125;<br>	<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">InitForSky</span><span class="hljs-params">(<span class="hljs-keyword">float</span> DownTargetPosY,<span class="hljs-keyword">float</span> createPosX, <span class="hljs-keyword">float</span> createPosY)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.DownTargetPosY = DownTargetPosY;<br>        transform.position = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Vector2</span>(createPosX, createPosY);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="2023年1月10日20-35-34-未完……"><a href="#2023年1月10日20-35-34-未完……" class="headerlink" title="2023年1月10日20:35:34  未完……"></a>2023年1月10日20:35:34  未完……</h2>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8/">植物大战僵尸</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/03/06/POJ-2488/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">POJ-2488</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/26/edge%E6%89%A9%E5%B1%95/">
+                        <span class="hidden-mobile">edge扩展</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
