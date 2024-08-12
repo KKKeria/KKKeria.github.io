@@ -174,9 +174,6 @@
 
 
 ]]></content>
-      <categories>
-        <category>位运算</category>
-      </categories>
   </entry>
   <entry>
     <title>动态规划</title>
@@ -212,15 +209,41 @@
 
 
 ]]></content>
-      <categories>
-        <category>动态规划</category>
-      </categories>
   </entry>
   <entry>
     <title>滑动窗口（定窗口）</title>
-    <url>/2024/08/11/%E7%81%B5%E7%A5%9E%E9%A2%98%E5%8D%95/</url>
-    <content><![CDATA[<p>hello</p>
-]]></content>
+    <url>/2024/08/11/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E2%80%94%E5%AE%9A%E7%AA%97%E5%8F%A3/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我爱灵神！！！！！！！！！！</p>
+<h2 id="题单链接"><a href="#题单链接" class="headerlink" title="题单链接"></a>题单链接</h2><p><a href="https://leetcode.cn/problem-list/V8kZI1e1/">滑动窗口——定窗口</a></p>
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>随便选一个 如：<a href="https://leetcode.cn/problems/maximum-sum-of-almost-unique-subarray">2841. 几乎唯一子数组的最大和</a></p>
+<figure class="highlight tap"><table><tr><td class="code"><pre><code class="hljs tap">给你一个整数数组 nums 和两个正整数 m 和 k 。<br><br>请你返回 nums 中长度为 k 的 几乎唯一 子数组的 最大和 ，如果不存在几乎唯一子数组，请你返回<span class="hljs-number"> 0 </span>。<br><br>如果 nums 的一个子数组有至少 m 个互不相同的元素，我们称它是 几乎唯一 子数组。<br><br>子数组指的是一个数组中一段连续 非空 的元素序列。<br></code></pre></td></tr></table></figure>
+<h2 id="代码-注释思路"><a href="#代码-注释思路" class="headerlink" title="代码 + 注释思路"></a>代码 + 注释思路</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-title">maxSum</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans = <span class="hljs-number">0</span>, curSum = <span class="hljs-number">0</span>; <span class="hljs-comment">// ans: 结果  curSum: 当前子数组的和</span><br>        unordered_map&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; cnt; <span class="hljs-comment">// cnt：记录出现频次 用作判断条件</span><br>        <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (; r &lt; k; r++) &#123; <span class="hljs-comment">// 先把窗口建立，取前 k 个</span><br>            curSum += nums[r];<br>            cnt[nums[r]]++;<br>        &#125;<br><br>        <span class="hljs-keyword">while</span> (r &lt; nums.<span class="hljs-built_in">size</span>()) &#123;  <span class="hljs-comment">// 移动窗口</span><br>            <span class="hljs-keyword">if</span> (cnt.<span class="hljs-built_in">size</span>() &gt;= m) &#123; <span class="hljs-comment">// 题意：至少 m 个互不相同的元素</span><br>                ans = <span class="hljs-built_in">max</span>(ans, curSum);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (--cnt[nums[l]] == <span class="hljs-number">0</span>) &#123; <span class="hljs-comment">// 移动 l 和 r 同时向后移动</span><br>                cnt.<span class="hljs-built_in">erase</span>(nums[l]);<br>            &#125;<br>            cnt[nums[r]]++;<br><br>            curSum += nums[r]; <span class="hljs-comment">// 和也同样处理</span><br>            curSum -= nums[l];<br><br>            l++;<br>            r++;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (cnt.<span class="hljs-built_in">size</span>() &gt;= m) &#123;<br>            ans = <span class="hljs-built_in">max</span>(ans, curSum);<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>思路模板大概是(有好几种，随便贴一种不一定最好)</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span> (r &lt; size) &#123;  <br>	<span class="hljs-comment">// step 1</span><br>	处理 ans<br><br>       <span class="hljs-comment">// step 2</span><br>	去除窗口首部元素，新增窗口尾部元素<br><br>       <span class="hljs-comment">// step 3</span><br>	移动窗口（定窗口为同时移动）<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight"><table><tr><td class="code"><pre><code class="hljs">定窗口比较简单, 难点在于读懂题意。<br></code></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>灵神题单</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>滑动窗口—不定长</title>
+    <url>/2024/08/12/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E2%80%94%E4%B8%8D%E5%AE%9A%E9%95%BF/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我爱灵神！！！！！！！！！！</p>
+<h2 id="题单链接"><a href="#题单链接" class="headerlink" title="题单链接"></a>题单链接</h2><p><a href="https://leetcode.cn/problem-list/KT0l4bmP/">滑动窗口——不定长</a></p>
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>随便选个题：<a href="https://leetcode.cn/problems/max-consecutive-ones-iii">1004. 最大连续1的个数 III</a></p>
+<figure class="highlight tap"><table><tr><td class="code"><pre><code class="hljs tap">给定一个二进制数组 nums 和一个整数 k，如果可以翻转最多 k 个<span class="hljs-number"> 0 </span>，则返回 数组中连续<span class="hljs-number"> 1 </span>的最大个数 。<br></code></pre></td></tr></table></figure>
+<h2 id="代码-注释思路"><a href="#代码-注释思路" class="headerlink" title="代码 + 注释思路"></a>代码 + 注释思路</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">longestOnes</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        <span class="hljs-comment">// 理解题意，最多翻转 k 个 0 </span><br>        <span class="hljs-comment">// 也就是在 0 的个数小于等于 k 的情况下,窗口能达到的最大长度</span><br>        <span class="hljs-comment">// cnt0 记录已经出现了的 0 的个数</span><br>        <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = <span class="hljs-number">0</span>, cnt0 = <span class="hljs-number">0</span>, ans = <span class="hljs-number">0</span>; <br><br>        <span class="hljs-keyword">for</span> (; r &lt; nums.<span class="hljs-built_in">size</span>(); r++) &#123;<br>            cnt0 += nums[r] == <span class="hljs-number">0</span>; <span class="hljs-comment">// 记录 0 </span><br>            <span class="hljs-keyword">while</span> (cnt0 &gt; k) &#123; <span class="hljs-comment">// 条件 -- 当不满足的时候就得移动 l 直到满足</span><br>                cnt0 -= nums[l++] == <span class="hljs-number">0</span>;<br>            &#125;<br>            ans = <span class="hljs-built_in">max</span>(ans, r - l + <span class="hljs-number">1</span>); <span class="hljs-comment">// 处理结果</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>思路模板大概是</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (; r &lt; nums.<span class="hljs-built_in">size</span>(); r++) &#123;<br>       <span class="hljs-comment">// step1：</span><br>       记录 r 位置元素加入后带来的影响<br><br>       <span class="hljs-comment">// step2：</span><br>       <span class="hljs-keyword">while</span> ( 窗口需要移动的条件 ) &#123;<br>           l 右移, 并且处理元素<br>       &#125;<br><br>       <span class="hljs-comment">// step3：</span><br>       处理结果 ans: 窗口长度就是 r - l + <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="1-gt-3"><a href="#1-gt-3" class="headerlink" title="1 -&gt; 3"></a>1 -&gt; 3</h2><p>比较好的一个题：<a href="https://leetcode.cn/problems/longest-nice-subarray">2401. 最长优雅子数组</a></p>
+<figure class="highlight tap"><table><tr><td class="code"><pre><code class="hljs tap">给你一个由 正 整数组成的数组 nums 。<br><br>如果 nums 的子数组中位于 不同 位置的每对元素按位 与（AND）运算的结果等于<span class="hljs-number"> 0 </span>，则称该子数组为 优雅 子数组。<br><br>返回 最长 的优雅子数组的长度。<br><br>子数组 是数组中的一个 连续 部分。<br><br>注意：长度为<span class="hljs-number"> 1 </span>的子数组始终视作优雅子数组。<br></code></pre></td></tr></table></figure>
+
+<h2 id="代码-注释思路-1"><a href="#代码-注释思路-1" class="headerlink" title="代码 + 注释思路"></a>代码 + 注释思路</h2><p>这里不同的一点在于 step1 和 step2 的位置，一般是先处理 r 元素，这个题比较特殊  </p>
+<p>这里用到了<code>位运算</code>的思路<br>满足条件是： <code>不同 位置的每对元素按位 与（AND）运算的结果等于 0</code><br>所以窗口的 l 需要移动的条件是<code>窗口内所有元素按位 &amp; 的结果不是 0</code>, 可以想到前缀和。<br><code>t |= nums[r]</code> 就是把每一位的 1 记录下来, 然后用 t 和当前 r 位置的元素 <code>&amp;</code>操作<br><a href="https://leetcode.cn/circle/discuss/CaOJ45/">灵神关于位运算的文章 —— 看做集合</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">longestNiceSubarray</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-comment">// 个人感觉这种类型有点像套模板</span><br>        <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = <span class="hljs-number">0</span>, t = <span class="hljs-number">0</span>, ans = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">for</span> (; r &lt; nums.<span class="hljs-built_in">size</span>(); r++) &#123;<br><br>            <span class="hljs-keyword">while</span> (t &amp; nums[r]) &#123; <span class="hljs-comment">// t &amp; nums[r] ： 窗口需要移动的条件</span><br>                t ^= nums[l++];<br>            &#125;<br><br>            t |= nums[r]; <span class="hljs-comment">// t |= nums[r] : 记录 r 位置元素加入后带来的影响</span><br>            ans = <span class="hljs-built_in">max</span>(ans, r - l + <span class="hljs-number">1</span>); <span class="hljs-comment">// 处理结果 ans</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight 1c"><table><tr><td class="code"><pre><code class="hljs 1c">代码的结构大体上类似，核心点在于找到 <span class="hljs-string">&quot;窗口需要移动的条件&quot;</span><br></code></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>灵神题单</category>
       </categories>

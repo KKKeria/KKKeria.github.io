@@ -16,19 +16,19 @@
   <meta name="description" content="学习使我快乐~！">
   <meta name="author" content="KKKeria">
   <meta name="keywords" content="">
-  <meta name="description" content="hello">
+  <meta name="description" content="前言我爱灵神！！！！！！！！！！ 题单链接滑动窗口——不定长 题目概述随便选个题：1004. 最大连续1的个数 III 1给定一个二进制数组 nums 和一个整数 k，如果可以翻转最多 k 个 0 ，则返回 数组中连续 1 的最大个数 。 代码 + 注释思路123456789101112131415161718class Solution &amp;#123;public:    int longestO">
 <meta property="og:type" content="article">
-<meta property="og:title" content="滑动窗口（定窗口）">
-<meta property="og:url" content="http://yoursite.com/2024/08/11/%E7%81%B5%E7%A5%9E%E9%A2%98%E5%8D%95/index.html">
+<meta property="og:title" content="滑动窗口—不定长">
+<meta property="og:url" content="http://yoursite.com/2024/08/12/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E2%80%94%E4%B8%8D%E5%AE%9A%E9%95%BF/index.html">
 <meta property="og:site_name" content="KKKeria">
-<meta property="og:description" content="hello">
+<meta property="og:description" content="前言我爱灵神！！！！！！！！！！ 题单链接滑动窗口——不定长 题目概述随便选个题：1004. 最大连续1的个数 III 1给定一个二进制数组 nums 和一个整数 k，如果可以翻转最多 k 个 0 ，则返回 数组中连续 1 的最大个数 。 代码 + 注释思路123456789101112131415161718class Solution &amp;#123;public:    int longestO">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-08-11T06:30:06.000Z">
-<meta property="article:modified_time" content="2024-08-11T06:31:20.522Z">
+<meta property="article:published_time" content="2024-08-12T12:55:08.000Z">
+<meta property="article:modified_time" content="2024-08-12T13:27:56.295Z">
 <meta property="article:author" content="KKKeria">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>滑动窗口（定窗口） - KKKeria</title>
+  <title>滑动窗口—不定长 - KKKeria</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -174,7 +174,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="滑动窗口（定窗口）">
+            <span class="h2" id="subtitle" title="滑动窗口—不定长">
               
             </span>
 
@@ -184,8 +184,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2024-08-11 14:30" pubdate>
-        2024年8月11日 下午
+      <time datetime="2024-08-12 20:55" pubdate>
+        2024年8月12日 晚上
       </time>
     </span>
   
@@ -195,7 +195,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5 字
+      1.4k 字
     </span>
   
 
@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      4 分钟
     </span>
   
 
@@ -233,11 +233,24 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">滑动窗口（定窗口）</h1>
+            <h1 style="display: none">滑动窗口—不定长</h1>
             
             <div class="markdown-body">
-              <p>hello</p>
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我爱灵神！！！！！！！！！！</p>
+<h2 id="题单链接"><a href="#题单链接" class="headerlink" title="题单链接"></a>题单链接</h2><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problem-list/KT0l4bmP/">滑动窗口——不定长</a></p>
+<h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>随便选个题：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/max-consecutive-ones-iii">1004. 最大连续1的个数 III</a></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tap">给定一个二进制数组 nums 和一个整数 k，如果可以翻转最多 k 个<span class="hljs-number"> 0 </span>，则返回 数组中连续<span class="hljs-number"> 1 </span>的最大个数 。<br></code></pre></td></tr></table></figure>
+<h2 id="代码-注释思路"><a href="#代码-注释思路" class="headerlink" title="代码 + 注释思路"></a>代码 + 注释思路</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">longestOnes</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        <span class="hljs-comment">// 理解题意，最多翻转 k 个 0 </span><br>        <span class="hljs-comment">// 也就是在 0 的个数小于等于 k 的情况下,窗口能达到的最大长度</span><br>        <span class="hljs-comment">// cnt0 记录已经出现了的 0 的个数</span><br>        <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = <span class="hljs-number">0</span>, cnt0 = <span class="hljs-number">0</span>, ans = <span class="hljs-number">0</span>; <br><br>        <span class="hljs-keyword">for</span> (; r &lt; nums.<span class="hljs-built_in">size</span>(); r++) &#123;<br>            cnt0 += nums[r] == <span class="hljs-number">0</span>; <span class="hljs-comment">// 记录 0 </span><br>            <span class="hljs-keyword">while</span> (cnt0 &gt; k) &#123; <span class="hljs-comment">// 条件 -- 当不满足的时候就得移动 l 直到满足</span><br>                cnt0 -= nums[l++] == <span class="hljs-number">0</span>;<br>            &#125;<br>            ans = <span class="hljs-built_in">max</span>(ans, r - l + <span class="hljs-number">1</span>); <span class="hljs-comment">// 处理结果</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>思路模板大概是</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (; r &lt; nums.<span class="hljs-built_in">size</span>(); r++) &#123;<br>       <span class="hljs-comment">// step1：</span><br>       记录 r 位置元素加入后带来的影响<br><br>       <span class="hljs-comment">// step2：</span><br>       <span class="hljs-keyword">while</span> ( 窗口需要移动的条件 ) &#123;<br>           l 右移, 并且处理元素<br>       &#125;<br><br>       <span class="hljs-comment">// step3：</span><br>       处理结果 ans: 窗口长度就是 r - l + <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h2 id="1-gt-3"><a href="#1-gt-3" class="headerlink" title="1 -&gt; 3"></a>1 -&gt; 3</h2><p>比较好的一个题：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-nice-subarray">2401. 最长优雅子数组</a></p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tap">给你一个由 正 整数组成的数组 nums 。<br><br>如果 nums 的子数组中位于 不同 位置的每对元素按位 与（AND）运算的结果等于<span class="hljs-number"> 0 </span>，则称该子数组为 优雅 子数组。<br><br>返回 最长 的优雅子数组的长度。<br><br>子数组 是数组中的一个 连续 部分。<br><br>注意：长度为<span class="hljs-number"> 1 </span>的子数组始终视作优雅子数组。<br></code></pre></td></tr></table></figure>
+
+<h2 id="代码-注释思路-1"><a href="#代码-注释思路-1" class="headerlink" title="代码 + 注释思路"></a>代码 + 注释思路</h2><p>这里不同的一点在于 step1 和 step2 的位置，一般是先处理 r 元素，这个题比较特殊  </p>
+<p>这里用到了<code>位运算</code>的思路<br>满足条件是： <code>不同 位置的每对元素按位 与（AND）运算的结果等于 0</code><br>所以窗口的 l 需要移动的条件是<code>窗口内所有元素按位 &amp; 的结果不是 0</code>, 可以想到前缀和。<br><code>t |= nums[r]</code> 就是把每一位的 1 记录下来, 然后用 t 和当前 r 位置的元素 <code>&amp;</code>操作<br><a target="_blank" rel="noopener" href="https://leetcode.cn/circle/discuss/CaOJ45/">灵神关于位运算的文章 —— 看做集合</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">longestNiceSubarray</span><span class="hljs-params">(vector&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-comment">// 个人感觉这种类型有点像套模板</span><br>        <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = <span class="hljs-number">0</span>, t = <span class="hljs-number">0</span>, ans = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">for</span> (; r &lt; nums.<span class="hljs-built_in">size</span>(); r++) &#123;<br><br>            <span class="hljs-keyword">while</span> (t &amp; nums[r]) &#123; <span class="hljs-comment">// t &amp; nums[r] ： 窗口需要移动的条件</span><br>                t ^= nums[l++];<br>            &#125;<br><br>            t |= nums[r]; <span class="hljs-comment">// t |= nums[r] : 记录 r 位置元素加入后带来的影响</span><br>            ans = <span class="hljs-built_in">max</span>(ans, r - l + <span class="hljs-number">1</span>); <span class="hljs-comment">// 处理结果 ans</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">代码的结构大体上类似，核心点在于找到 <span class="hljs-string">&quot;窗口需要移动的条件&quot;</span><br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -268,8 +281,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/21/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                        <span class="hidden-mobile">动态规划</span>
+                      <a href="/2024/08/11/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E2%80%94%E5%AE%9A%E7%AA%97%E5%8F%A3/">
+                        <span class="hidden-mobile">滑动窗口（定窗口）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
